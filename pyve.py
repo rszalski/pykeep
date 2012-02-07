@@ -39,6 +39,15 @@ else:
     configPath = os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), 'configs')
 
 if __name__ == '__main__':
+    # Sets up the argument parser
+    import argparse
+    
+    parser = argparse.ArgumentParser(description = 'Tool for automating MySQL and FTP backups')
+    parser.add_argument('--dry-run', '-d', dest = 'dryRun', nargs = '?', const = True, default = False, \
+                        help = 'Runs the script in dry run mode, when no connections, file manipulations etc. are performed')
+
+    args = parser.parse_args()
+
     for configFile in glob.iglob(configPath +  '/*'):
         config = configparser.ConfigParser()
         config.read(configFile)
