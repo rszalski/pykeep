@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import os, glob, configparser, shlex
 import subprocess as subp
 
