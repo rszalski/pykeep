@@ -5,10 +5,9 @@ import subprocess as subp
 
 def backupMysql(config = None):
     ''' Performs a MySQL backup using mysqldump tool 
-        and a specific config file
-
-        Dependancies: mysqldump
+        and a specific config file 
     '''
+
     print('o Performing MySQL Backup...')
     print('\t=> Checking for the mysqldump tool...')
 
