@@ -23,8 +23,9 @@ def backupMysql(config = None):
     
     print('\t=> mysqldump found. Proceeding with backup...')
     
-    with open(os.path.join(config['path'], config['backup_name']), 'w') as backupFile:
-        subp.call(shlex.split('mysqldump -h {host} -u {username} -p{password} --databases {databases}'.format(**config)), stdout = backupFile)
+    if args.dryRun:
+        with open(os.path.join(config['path'], config['backup_name']), 'w') as backupFile:
+            subp.call(shlex.split('mysqldump -h {host} -u {username} -p{password} --databases {databases}'.format(**config)), stdout = backupFile)
     print('\t=> MySQL Backup Finished.')
 
 # Available backup routines for different sources: mysql, files, ftp etc
