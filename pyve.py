@@ -2,6 +2,7 @@
 
 import os, glob, configparser, shlex
 import subprocess as subp
+from datetime import datetime
 
 def backupMysql(config = None):
     ''' Performs a MySQL backup using mysqldump tool 
@@ -23,8 +24,10 @@ def backupMysql(config = None):
     
     print('\t=> mysqldump found. Proceeding with backup...')
     
+    filename = '{}_{}.sql'.format(config['databases'], datetime.now().strftime('%d-%m-%Y_%H:%M:%S:%f'))
+    
     if args.dryRun:
-        with open(os.path.join(config['path'], config['backup_name']), 'w') as backupFile:
+        with open(os.path.join(config['path'], filename), 'w') as backupFile:
             subp.call(shlex.split('mysqldump -h {host} -u {username} -p{password} --databases {databases}'.format(**config)), stdout = backupFile)
     print('\t=> MySQL Backup Finished.')
 
