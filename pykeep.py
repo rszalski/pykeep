@@ -39,6 +39,10 @@ def backupMysql(config = None):
 
                 subp.call(shlex.split(command), stdout = backupFile)
 
+        if os.path.isfile(os.path.join(config['path'], filename)):
+            print(' -> file \'{}\' created'.format(filename))
+        else:
+            print('[ERROR] File not created!')
     print('\t=> MySQL Backup Finished.')
 
 # Available backup routines for different sources: mysql, files, ftp etc
