@@ -26,6 +26,9 @@ def backupMysql(config = None):
     print('\t\t[Backup Path is \'{}\']'.format(config['path']))
 
     for i, database in enumerate(config['databases'].split(), start = 1):
+        print('\t\t* Backing up database {db} ({i}/{total})'.format(db = database, i = i, 
+                                                                    total = len(config['databases'].split())), end = ' ')
+
         filename = '{}_{}.sql'.format(database, datetime.now().strftime('%d-%m-%Y_%H:%M:%S:%f'))
 
         if not args.dryRun:
