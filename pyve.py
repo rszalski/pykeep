@@ -26,7 +26,7 @@ def backupMysql(config = None):
     
     filename = '{}_{}.sql'.format(config['databases'], datetime.now().strftime('%d-%m-%Y_%H:%M:%S:%f'))
     
-    if args.dryRun:
+    if not args.dryRun:
         with open(os.path.join(config['path'], filename), 'w') as backupFile:
             subp.call(shlex.split('mysqldump -h {host} -u {username} -p{password} --databases {databases}'.format(**config)), stdout = backupFile)
     print('\t=> MySQL Backup Finished.')
