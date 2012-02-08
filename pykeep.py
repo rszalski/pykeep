@@ -21,7 +21,7 @@ def backupMysql(config = None):
         print('\t=> An exception occured. Unable to use "which"')
         print(ex)
         return
-    
+
     print('\t=> mysqldump found. Proceeding with backup...')
     print('\t\t[Backup Path is \'{}\']'.format(config['path']))
 
@@ -59,7 +59,7 @@ else:
 if __name__ == '__main__':
     # Sets up the argument parser
     import argparse
-    
+
     parser = argparse.ArgumentParser(description = 'Tool for automating MySQL and FTP backups')
     parser.add_argument('--dry-run', '-d', dest = 'dryRun', nargs = '?', const = True, default = False, \
                         help = 'Runs the script in dry run mode, when no connections, file manipulations etc. are performed')
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     for configFile in glob.iglob(configPath +  '/*'):
         config = configparser.ConfigParser()
         config.read(configFile)
-        
+
         for section in config.sections():
             backupRoutines[section](config[section])
 
