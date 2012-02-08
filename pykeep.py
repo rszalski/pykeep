@@ -23,6 +23,8 @@ def backupMysql(config = None):
         return
     
     print('\t=> mysqldump found. Proceeding with backup...')
+    print('\t\t[Backup Path is \'{}\']'.format(config['path']))
+
     for i, database in enumerate(config['databases'].split(), start = 1):
         filename = '{}_{}.sql'.format(database, datetime.now().strftime('%d-%m-%Y_%H:%M:%S:%f'))
 
