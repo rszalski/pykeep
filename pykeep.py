@@ -7,7 +7,7 @@ from datetime import datetime
 def backupMysql(config = None):
     ''' Performs a MySQL backup using mysqldump tool 
         and a specific config file 
-    '''
+    ''' 
 
     print('o Performing MySQL Backup...')
     print('\t=> Checking for the mysqldump tool...')
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     print(configFiles)
 
     if len(configFiles) == 0:
-        print('No config files found in {path}. Nothing to do!  Exiting...'.format(path = config.__USER_CONFIG_PATH__))
+        print('No config files found in {path}. Nothing to do! Exiting...'.format(path = config.__USER_CONFIG_PATH__))
     else:
         for configFile in configFiles:
             userConfig = configparser.ConfigParser()
