@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import os, glob, configparser, shlex
+import os, glob, configparser, shlex, config
 import subprocess as subp
 from datetime import datetime
 
@@ -50,18 +50,12 @@ backupRoutines = {
     'mysql': backupMysql,
 }
 
-# Finds the path to configuration files
-if os.path.isabs(__file__):
-    configPath = os.path.join(path, 'configs')
-else:
-    configPath = os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), 'configs')
-
 if __name__ == '__main__':
     from argparser import parser
 
     args = parser.parse_args()
 
-    for configFile in glob.iglob(configPath +  '/*'):
+    for configFile in glob.iglob(config.__USER_CONFIG_PATH__ +  '/*'):
         config = configparser.ConfigParser()
         config.read(configFile)
 
