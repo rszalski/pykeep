@@ -11,7 +11,9 @@ if __name__ == '__main__':
     from argparser import parser
 
     args = parser.parse_args()
-    configFiles = [name for name in os.listdir(config.__USER_CONFIG_PATH__) if os.path.isfile(os.path.join(config.__USER_CONFIG_PATH__, name))]
+    path = config.__USER_CONFIG_PATH__
+    configFiles = [os.path.join(path, name) for name in os.listdir(path)
+                   if (os.path.isfile(os.path.join(path, name)) and name.endswith('.conf'))]
 
     if not configFiles:
         print('No config files found in {}. Nothing to do! Exiting.'.format(config.__USER_CONFIG_PATH__))
