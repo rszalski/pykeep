@@ -20,7 +20,7 @@ if __name__ == '__main__':
     else:
         for configFile in configFiles:
             userConfig = configparser.ConfigParser()
-            userConfig.read(os.path.join(config.__USER_CONFIG_PATH__, configFile))
+            userConfig.read(configFile)
 
             for section in userConfig.sections():
                 backupRoutines[section](userConfig[section], args)
