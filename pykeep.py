@@ -23,5 +23,8 @@ if __name__ == '__main__':
             userConfig.read(configFile)
 
             for section in userConfig.sections():
-                backupRoutines[section](userConfig[section], args)
-
+                try:
+                    backupRoutines[section](userConfig[section], args)
+                except KeyError:
+                    print('Config file contains a section that is not \
+                          supported. Ignoring [{}]'.format(section))
