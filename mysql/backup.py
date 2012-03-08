@@ -40,5 +40,5 @@ def performBackup(config = None, args = None):
         if os.path.isfile(os.path.join(config['path'], filename)):
             print(' -> file \'{}\' created'.format(filename))
         else:
-            print('[ERROR] File not created!')
+            print('[{}] File not created!'.format('DRYRUN' if args.dryRun else 'ERROR'))
     print('\t=> MySQL Backup Finished.')
